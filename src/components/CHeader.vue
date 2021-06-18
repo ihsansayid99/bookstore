@@ -35,6 +35,7 @@
         }),
         isHome(){
             return (this.$route.path === '/')
+            // return "Hello"
         }
     }
   }

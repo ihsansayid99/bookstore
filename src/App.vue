@@ -1,9 +1,8 @@
 <template>
   <v-app>
-    <c-header></c-header>
+    <c-header />
     <c-side-bar></c-side-bar>
     <v-main>
-      <!-- <HelloWorld/> -->
       <v-slide-y-transition mode="out-in">
         <router-view></router-view>
       </v-slide-y-transition>
@@ -13,15 +12,17 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import CHeader from './components/CHeader';
+import CFooter from './components/CFooter';
+import CSideBar from './components/CSideBar';
 
 export default {
   name: 'App',
 
   components: {
-    // HelloWorld,
-    CHeader
+    CHeader,
+    CFooter,
+    CSideBar
   },
 
   data: () => ({
