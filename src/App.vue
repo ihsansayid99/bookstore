@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <c-header></c-header>
+    <c-side-bar></c-side-bar>
+    <v-main>
+      <!-- <HelloWorld/> -->
+      <v-slide-y-transition mode="out-in">
+        <router-view></router-view>
+      </v-slide-y-transition>
+    </v-main>
+    <c-footer></c-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld';
+import CHeader from './components/CHeader';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
+  components: {
+    // HelloWorld,
+    CHeader
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    .v-toolbar{
+      flex: 0 !important;
+    }
+    .v-application .py-3{
+      text-align: center !important;
+    }
+    .v-card__text{
+      text-align: center !important;
+    }
 </style>
