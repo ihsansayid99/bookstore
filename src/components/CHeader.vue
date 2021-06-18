@@ -11,12 +11,13 @@
 
     <v-btn icon>
       <v-badge left overlap color="orange">
-          <span slot="badge">1</span>
+          <span slot="badge" v-if="countCart>0">{{countCart}}</span>
+          <span slot="badge" v-else>0</span>
           <v-icon>shopping_cart</v-icon>
       </v-badge>
     </v-btn>
 
-    <v-text-field v-if="isHome" slot="extension" hide-details append-icon="mic" text label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
+    <v-text-field v-if="isHome" @click="search()" slot="extension" hide-details append-icon="mic" text label="Search" prepend-inner-icon="search" solo-inverted></v-text-field>
   </v-app-bar>
 </template>
 
@@ -27,11 +28,19 @@
     methods:{
         ...mapActions({
             setSideBar: 'setSideBar',
+            setStatusDialog: 'dialog/setStatus',
+            setComponent: 'dialog/setComponent'
         }),
+        search(){
+          this.setStatusDialog(true)
+          this.setComponent('search')
+          this.setSideBar(false)
+        }
     },
     computed: {
         ...mapGetters({
-            sideBar: 'sideBar'
+            sideBar: 'sideBar',
+            countCart: 'cart/count'
         }),
         isHome(){
             return (this.$route.path === '/')

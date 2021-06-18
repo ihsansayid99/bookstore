@@ -8,13 +8,27 @@
       </v-slide-y-transition>
     </v-main>
     <c-footer></c-footer>
+    <c-alert></c-alert>
+    <!-- <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialogbottom-transition">
+      <search />
+    </v-dialog> -->
+    <keep-alive>
+      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialogbottom-transition">
+        <component :is="currentComponent"></component>
+      </v-dialog>
+    </keep-alive>
   </v-app>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import CHeader from './components/CHeader';
 import CFooter from './components/CFooter';
 import CSideBar from './components/CSideBar';
+import CAlert from './components/CAlert';
+import Search from './views/Search';
+import Login from './views/Login';
+import Register from './views/Register';
 
 export default {
   name: 'App',
@@ -22,12 +36,31 @@ export default {
   components: {
     CHeader,
     CFooter,
-    CSideBar
+    CSideBar,
+    CAlert,
+    Search,
+    Login,
+    Register
   },
-
-  data: () => ({
-    //
-  }),
+  methods: {
+    ...mapActions({
+      setStatusDialog : 'dialog/setStatus',
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      statusDialog : 'dialog/status',
+      currentComponent : 'dialog/component'
+    }),
+    dialog: {
+      get(){
+        return this.statusDialog
+      },
+      set(value){
+        this.setStatusDialog(value)
+      }
+    }
+  }
 };
 </script>
 <style>

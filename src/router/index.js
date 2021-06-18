@@ -30,6 +30,16 @@ const Routes = new Router({
             component: () => import('../views/Books')
         },
         {
+            path: '/category/:slug',
+            name: 'category',
+            component: () => import('../views/Category')
+        },
+        {
+            path: '/book/:slug',
+            name: 'book',
+            component: () => import('../views/Book')
+        },
+        {
             path: '*',
             redirect: {
                 name: 'home'
