@@ -26,7 +26,8 @@ import CHeader from './components/CHeader';
 import CFooter from './components/CFooter';
 import CSideBar from './components/CSideBar';
 import CAlert from './components/CAlert';
-import Search from './views/Search';
+import Search from './views/Search';                   
+import Cart from './views/Cart';                   
 import Login from './views/Login';
 import Register from './views/Register';
 
@@ -40,7 +41,8 @@ export default {
     CAlert,
     Search,
     Login,
-    Register
+    Register,
+    Cart
   },
   methods: {
     ...mapActions({
